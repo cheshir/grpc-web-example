@@ -1,0 +1,23 @@
+version: '3'
+services:
+  server:
+    image: golang
+    working_dir: /app
+    volumes:
+      - .:/app
+    entrypoint:
+      - /bin/bash
+      - -c
+      - go build -o server && ./server
+    ports:
+      - "8080:80"
+      - "9090:9090"
+  envoy:
+    build:
+      context: ./
+      dockerfile: ./gateway/Dockerfile
+    image: grpcweb/envoy
+    ports:
+      - "8081:80"
+    links:
+      - server

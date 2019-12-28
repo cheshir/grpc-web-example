@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+package currenttime;
+
+service CurrentTimer {
+    rpc GetCurrentTime(google.protobuf.Empty) returns (CurrentTimeResponse) {}
+}
+
+message CurrentTimeResponse {
+    google.protobuf.Timestamp timestamp = 1;
+}

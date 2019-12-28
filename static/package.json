@@ -1,0 +1,15 @@
+{
+  "name": "grpc-web-test",
+  "dependencies": {
+    "google-protobuf": "^3.11.2",
+    "grpc-web": "^1.0.7",
+    "@grpc/proto-loader": "^0.5.3",
+    "grpc": "^1.24.2",
+    "babel-polyfill": "^6.26.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
+    "browserify": "^16.2.2"
+  }
+}
