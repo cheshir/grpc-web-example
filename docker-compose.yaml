@@ -18,6 +18,6 @@ services:
       dockerfile: ./gateway/Dockerfile
     image: grpcweb/envoy
     ports:
-      - "8081:80"
+      - "8081:10000"
     links:
       - server
