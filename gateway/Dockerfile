@@ -1,4 +1,4 @@
-FROM envoyproxy/envoy:latest
+FROM envoyproxy/envoy:v1.15.2
 
 COPY gateway/config.yaml /etc/envoy/envoy.yaml
 

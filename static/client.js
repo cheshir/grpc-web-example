@@ -33,12 +33,26 @@ class CurrentTime {
 GrpcWebClientBase.prototype.rpcCall = requestLoggerWrapper(GrpcWebClientBase.prototype.rpcCall)
 GrpcWebClientBase.prototype.unaryCall = requestLoggerWrapper(GrpcWebClientBase.prototype.unaryCall)
 
-let ct = new CurrentTime()
-
-ct.getTime()
-    .then((response) => console.log("current time: ", convertTimestampToDate(response.toObject().timestamp)))
-    .catch((e) => console.error(e))
-
 function convertTimestampToDate(ts) {
     return new Date(ts.seconds * 1000 + ts.nanos / 10e6)
+}
+
+setInterval(() => {
+    let ct = new CurrentTime()
+
+    ct.getTime()
+        .then(response => {
+            log("current time: " + convertTimestampToDate(response.toObject().timestamp))
+        })
+        .catch(e => error(e))
+}, 1000)
+
+function log(message) {
+    console.info(message)
+    document.getElementById("log").innerText = "Log: " + JSON.stringify(message)
+}
+
+function error(err) {
+    console.error(err)
+    document.getElementById("log").innerText = "Error: " + JSON.stringify(err)
 }
